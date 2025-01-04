@@ -1,6 +1,6 @@
-exports.sendJwtToken = (student,statuscode,res)=>{
+ const sendJwtToken = (user,statuscode,res)=>{
    
-    const token = student.getjwttoken();
+    const token = user.getjwttoken();
 
     const options = {
         exipres:new Date(Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
@@ -10,7 +10,9 @@ exports.sendJwtToken = (student,statuscode,res)=>{
     }
 
       
-    res.status(statuscode).cookie("token", token , options).json({success:true, id:student._id , token})
+    res.status(statuscode).cookie("token", token , options).json({success:true, id:user._id , token})
    
 
 }
+
+export default sendJwtToken;

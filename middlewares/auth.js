@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken"
-import ErrorHandler from "../utils/ErrorHandler"
-import { catchAsyncErrors } from "./catchAsyncErrors"
+import ErrorHandler from "../utils/ErrorHandler.js"
+import { catchAsyncErrors } from "./catchAsyncErrors.js"
 
-exports.isAuthenticated = catchAsyncErrors(async (req, res, next) => {
+export const isAuthenticated = catchAsyncErrors(async (req, res, next) => {
   const  token = req.cookies.token || req.body.headers.Authorization.split(" ")[1];
 
   if (!token) {
