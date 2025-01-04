@@ -1,7 +1,7 @@
-const { catchAsyncErrors } = require("../middlewares/catchAsyncErrors");
-const User = require("../models/userModel");
-const ErrorHandler = require("../utils/ErrorHandler");
-const { sendtoken } = require("../utils/SendToken");
+import { catchAsyncErrors } from "../middlewares/catchAsyncErrors";
+import User from "../models/user.model";
+import ErrorHandler from "../utils/ErrorHandler";
+import { sendtoken } from "../utils/SendToken";
 
 exports.currentUser = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.id);
