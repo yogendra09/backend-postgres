@@ -32,7 +32,7 @@ app.use(
     cookie: {
       secure: process.env.NODE_ENV === "production", // Use secure cookies in production
       httpOnly: true,          // Prevent client-side access to the cookie
-      maxAge: 1000 * 60 * 60,  // 1-hour expiry (adjust as needed)
+      maxAge: 8000 * 60 * 60,  // 1-hour expiry (adjust as needed)
     },
   })
 );

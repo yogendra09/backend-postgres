@@ -10,7 +10,7 @@
     }
 
       
-    res.status(statuscode).cookie("token", token , options).json({success:true, id:user._id , token})
+    res.status(statuscode).cookie("token", token , options).json({status:true, id:user._id , token})
    
 
 }

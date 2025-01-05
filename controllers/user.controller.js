@@ -9,7 +9,21 @@ const currentUser = catchAsyncErrors(async (req, res, next) => {
 });
 
 const register = catchAsyncErrors(async (req, res, next) => {
-  const user = new User(req.body);
+  const { name, email, password } = req.body;
+  if (!name || !email || !password) {
+    return next(new ErrorHandler("please enter name email and password", 400));
+  }
+
+  // const userExist = await User.findOne({ email });
+  // if (userExist) {
+  //   return next(new ErrorHandler("user already exist", 400));
+  // }
+
+  const user = new User({
+    name,
+    email,
+    password,
+  });
   await user.save();
   sendJwtToken(user, 200, res);
 });
@@ -34,6 +48,5 @@ const logout = catchAsyncErrors(async (req, res, next) => {
   };
   res.status(200).cookie("token", "", option).json({ message: "user logout!" });
 });
-
 
 export default { currentUser, register, login, logout };
