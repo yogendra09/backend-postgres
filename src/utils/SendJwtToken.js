@@ -1,4 +1,4 @@
- const sendJwtToken = (user,statuscode,res)=>{
+exports.sendJwtToken = (user,statuscode,res)=>{
    
     const token = user.getjwttoken();
 
@@ -15,4 +15,3 @@
 
 }
 
-export default sendJwtToken;

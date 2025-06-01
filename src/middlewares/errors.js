@@ -1,4 +1,4 @@
-export const generatedErrors = (err, req, res, next) => {
+exports.generatedErrors = (err, req, res, next) => {
     const statusCode = err.statusCode || 500;
   
     // Handle MongoDB duplicate key error

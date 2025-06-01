@@ -1,8 +1,9 @@
-import jwt from "jsonwebtoken"
-import ErrorHandler from "../utils/ErrorHandler.js"
-import { catchAsyncErrors } from "./catchAsyncErrors.js"
+const jwt = require("jsonwebtoken");
+const { catchAsyncErrors } = require("./catchAsyncErrors");
+const { default: ErrorHandler } = require("../utils/ErrorHandler");
 
-export const isAuthenticated = catchAsyncErrors(async (req, res, next) => {
+
+exports.authenticate = catchAsyncErrors(async (req, res, next) => {
   const  token = req.cookies.token || req.body.headers.Authorization.split(" ")[1];
 
   if (!token) {

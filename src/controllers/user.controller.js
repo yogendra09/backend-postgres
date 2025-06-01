@@ -1,14 +1,14 @@
-import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
-import User from "../models/user.model.js";
-import ErrorHandler from "../utils/ErrorHandler.js";
-import sendJwtToken from "../utils/SendJwtToken.js";
+const {catchAsyncErrors} = require("../middlewares/catchAsyncErrors");
+const ErrorHandler = require("../utils/ErrorHandler");
+const User = require("../models/user.model");
+const {sendJwtToken} = require("../utils/SendJwtToken");
 
-const currentUser = catchAsyncErrors(async (req, res, next) => {
+exports.currentUser = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.id);
   res.json(user);
 });
 
-const register = catchAsyncErrors(async (req, res, next) => {
+ exports.register = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
     return next(new ErrorHandler("please enter name email and password", 400));
@@ -28,7 +28,7 @@ const register = catchAsyncErrors(async (req, res, next) => {
   sendJwtToken(user, 200, res);
 });
 
-const login = catchAsyncErrors(async (req, res, next) => {
+exports.login = catchAsyncErrors(async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
     return next(new ErrorHandler("please enter email and password", 400));
@@ -40,7 +40,7 @@ const login = catchAsyncErrors(async (req, res, next) => {
   sendJwtToken(user, 200, res);
 });
 
-const logout = catchAsyncErrors(async (req, res, next) => {
+exports.logout = catchAsyncErrors(async (req, res, next) => {
   const option = {
     exipres: new Date(),
     httpOnly: true,
@@ -49,4 +49,3 @@ const logout = catchAsyncErrors(async (req, res, next) => {
   res.status(200).cookie("token", "", option).json({ message: "user logout!" });
 });
 
-export default { currentUser, register, login, logout };
