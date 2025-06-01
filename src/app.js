@@ -4,6 +4,7 @@ const cors = require("cors");
 const session = require("express-session");
 const cookieparser = require("cookie-parser");
 const router = require("./routes/router.js");
+const { generatedErrors } = require("./middlewares/errors.js");
 dotenv.config();
 const app = express();
 
@@ -44,7 +45,7 @@ app.use("/api/v1",router);
 
 //error handling
 
-app.all("*",(req,res,next)=>{
+app.use((req,res,next)=>{
   next(new ErrorHandler(`Requested URL Not Found ${req.url}`),404);
 });
 app.use(generatedErrors);

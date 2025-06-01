@@ -23,9 +23,8 @@
 module.exports = {
   host:"localhost",
   username:"postgres",
-  // password:"music#$321",
-  password:"7987", // i have used my own password
-  database:"e-store-demo1",
+  password:"music#$321",
+  database:"e-store",
   dialect:"postgres",
   timezone:"+05:30",
   pool:{

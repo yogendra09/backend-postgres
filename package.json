@@ -20,11 +20,15 @@
   },
   "homepage": "https://github.com/yogendra09/backend-postgres#readme",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-session": "^1.18.1",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.0",
+    "postgres": "^3.4.7",
+    "sequelize": "^6.37.7"
   }
 }
